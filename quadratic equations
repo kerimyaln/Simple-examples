@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class ikinciDereceDenklem {
+	
+	private static Scanner sc;
+	
+	public static void main(String[] args) {
+		
+double a,b,c,delta,bırıncıkök,ıkıncıkök;
+   
+    sc = new Scanner(System.in);
+
+    System.out.println("ax^2+bx+c=0 için sırasıyla a,b,c kat sayılarını giriniz: ");
+
+        a = sc.nextDouble();
+        b = sc.nextDouble();
+        c = sc.nextDouble();
+        delta = (b*b)-(4*a*c);
+
+if(a==0) {
+	
+	while (a==0)
+	{
+		System.out.println("a kat sayısı sıfır olamaz! Lütfen tekrardan sırası ile a,b,c sayılarını giriniz.");
+      	a = sc.nextDouble();
+	    b = sc.nextDouble();
+	    c = sc.nextDouble();
+
+     }
+	}
+	
+if(delta>0){
+         bırıncıkök = ((-1*b)-Math.sqrt(delta))/(2*a);
+         ıkıncıkök= ((-1*b)+Math.sqrt(delta))/(2*a);
+         System.out.println("İki reel kök vardır. \nBirinci reel kök=" + bırıncıkök +"\nİkinci reel kök=" +ıkıncıkök);
+         }
+
+if(delta<0)
+	     System.out.println("Reel kök yoktur.Karmaşık kök vardır."); 
+
+if (delta==0){
+		 bırıncıkök = (-1*b)/(2*a);
+		 System.out.println("Çakışık reel kök vardır.\n Tek reel kök =" + bırıncıkök);
+		 
+	 }
+    }
+   }
+
+
+
