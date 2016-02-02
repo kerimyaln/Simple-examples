@@ -1,0 +1,124 @@
+
+import java.awt.EventQueue;
+import javax.swing.JFrame;
+import java.awt.SystemColor;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+public class ogrenciSorgulama{
+	
+	private JFrame frmrenciSorgulama;
+	private JTextField textBox;
+	int notlar[][]={{35,75,24},{83,39,43},{55,69,88},{11,8,61},{65,45,77},{38,59,69},{89,95,100},{68,78,55},{16,27,54},{15,85,63}};
+	static int i=0;
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			
+			public void run() {
+				try {
+					ogrenciSorgulama window = new ogrenciSorgulama();
+					window.frmrenciSorgulama.setVisible(true);
+				} 
+				catch (Exception e) { e.printStackTrace(); } } }); }
+	public ogrenciSorgulama () { initialize(); }
+	
+	public String ogrnsorgula(int ogrno){
+		String str="";
+		ogrno--;
+		    try{
+		    str+=(ogrno+1)+".öğrencinin not bilgileri...\n\n";
+			str+="Kimya notu= "+notlar[ogrno][0]+gectimi(ogrno,0);
+			str+="Biyoloji notu= "+notlar[ogrno][1]+gectimi(ogrno,1);
+			str+="Fizik notu= "+notlar[ogrno][2]+gectimi(ogrno , 2); }
+		    catch(Exception e){ return "hata"; }
+		return str;  }
+	
+	public String gectimi(int ogrno,int ders){
+	  if(notlar[ogrno][ders]>=60)
+		  
+		return " Öğrenci dersten geçmiştir.\n\n";
+	    return " Öğrenci dersten kalmıştır.\n\n"; }
+	
+	private void initialize() {
+		
+		frmrenciSorgulama = new JFrame();
+		frmrenciSorgulama.getContentPane().setBackground(SystemColor.activeCaption);
+		frmrenciSorgulama.setTitle("\u00D6\u011Frenci sorgulama");
+		frmrenciSorgulama.setBounds(450, 120, 405, 436);
+		frmrenciSorgulama.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmrenciSorgulama.getContentPane().setLayout(null);
+		
+		final JTextPane cıktı = new JTextPane();
+		cıktı.setText("");
+		cıktı.setFont(new Font("Georgia", Font.ITALIC, 14));
+		cıktı.setBackground(SystemColor.menu);
+		cıktı.setBounds(10, 172, 373, 126);
+		cıktı.setVisible(false);
+		cıktı.setEditable(false); // bu  satırı ekle :)--------------------------------------------------------------------
+		frmrenciSorgulama.getContentPane().add(cıktı);
+		
+		textBox = new JTextField();
+		textBox.setBackground(SystemColor.menu);
+		textBox.setBounds(99, 38, 116, 20);
+		frmrenciSorgulama.getContentPane().add(textBox);
+		textBox.setColumns(10);
+		
+		textBox.addKeyListener(new KeyAdapter() {
+			public void keyPressed(KeyEvent e) {
+				 
+				if (e.getKeyCode()==KeyEvent.VK_ENTER){
+					
+				try{
+					i=Integer.parseInt(textBox.getText());
+				}
+				catch(Exception e1){
+					 textBox.setText("");
+					 JOptionPane.showConfirmDialog(null, "Lütfen tam sayı giriniz.","Hata",-1,2);
+				}
+				String str=ogrnsorgula(Integer.parseInt(textBox.getText()));
+					 textBox.setText("");
+				
+					 if(str.equals("hata"))	{
+							cıktı.setVisible(false);
+							JOptionPane.showConfirmDialog(null, "Girilen öğrenci numarası bulunamadı.","Uyarı",-1,2);
+							
+						
+						}
+							else{
+							cıktı.setVisible(true);
+							cıktı.setText(str);  }  }  }  }  );
+		
+		
+		JLabel label = new JLabel("\u00D6\u011Frenci no:");
+		label.setFont(new Font("Georgia", Font.ITALIC, 14));
+		label.setBackground(SystemColor.menu);
+		label.setBounds(10, 40, 79, 14);
+		frmrenciSorgulama.getContentPane().add(label);
+		
+		JButton button = new JButton("Sorgula");
+		button.setFont(new Font("Georgia", Font.ITALIC, 14));
+		button.setBounds(241, 36, 89, 22);
+		frmrenciSorgulama.getContentPane().add(button);
+		
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+		
+				String str=ogrnsorgula(Integer.parseInt(textBox.getText()));
+		         textBox.setText("");
+		
+		if(str.equals("hata"))	{
+			cıktı.setVisible(false);
+		    textBox.setText("");
+			JOptionPane.showMessageDialog(null,"Girilen öğrenci numarası bulunamadı."); }
+		
+		else{
+			cıktı.setVisible(true);
+			cıktı.setText(str);   }  }  }  );  }  }
