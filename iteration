@@ -1,0 +1,18 @@
+/*and the sum of the number of pairs*/
+
+public class iteration {
+
+	public static void main(String[] args) {
+	
+		int toplamc=0,toplamt=0,a=1,b=100,c=2;
+	
+	while(a<=b){
+		toplamt=toplamt+a;
+	    a+=2;}
+	
+	while(c<=b){
+		toplamc=toplamc+c;
+		c+=2;}
+   System.out.println("çift sayıların toplamı="+toplamc+ "\ntek sayıların toplamı="+toplamt);
+	 }
+	}
