@@ -1,0 +1,41 @@
+import java.io.IOException;
+import java.util.Scanner;
+
+   public class hesapMakinesi {
+   private static Scanner sc;
+ 	
+	public static void main(String[] args) throws IOException {
+		int sayi1,sayi2;
+		char op;
+		  sc = new Scanner(System.in);
+		  System.out.println("Sayıları giriniz.");
+		  sayi1=sc.nextInt();
+		  sayi2=sc.nextInt();
+		
+		  System.out.println("Hangi işlemi yapmak istiyorsunuz ? ");
+	      op = (char) System.in.read();
+			
+	        switch(op) {
+	            case '+':
+	                System.out.println("Sonuç: " + (sayi1 + sayi2));
+	                break;
+	            case '-':
+	                System.out.println("Sonuç: " + (sayi1 - sayi2));
+	                break;
+	            case '*':
+	                System.out.println("Sonuç: " + (sayi1 * sayi2));
+	                break;
+	            case '/':
+	            	if(sayi2==0){
+	        			while(sayi2==0){
+	        			System.out.println("2.sayi sıfır olamaz.lütfen 2.sayıyı tekrar giriniz.");
+	        			sayi2=sc.nextInt(); } }
+	                    System.out.println("Sonuç: " + (sayi1 / sayi2));
+	                break;
+	            default:
+	                System.out.println("Hatalı operatör.");
+		 }
+		}
+       }
+		
+	
